@@ -20,14 +20,14 @@
       }
     ],
     "paths": {
-      "@/*": ["app/*"],                      // General root alias for everything inside /app
-      "@components/*": ["app/components/*"], // Reusable components (Navbar, Footer, etc.)
-      "@account/*": ["app/account/*"],       // Account pages (Profile, Settings)
-      "@auth/*": ["app/authentication/*"],   // Authentication pages (Sign-in, Sign-up)
-      "@site/*": ["app/site/*"],             // Site content (Landing page, Media pages)
-      "@context/*": ["src/context/*"],       // React Context providers
-      "@hooks/*": ["src/hooks/*"],           // Custom React hooks
-      "@utils/*": ["src/utils/*"],           // Helper functions and API utilities
+      "@/*": ["src/app/*"],                      // General root alias for everything inside /app
+      "@components/*": ["src/app/components/*"], // Reusable components (Navbar, Footer, etc.)
+      "@account/*": ["src/app/account/*"],       // Account pages (Profile, Settings)
+      "@auth/*": ["src/app/authentication/*"],   // Authentication pages (Sign-in, Sign-up)
+      "@site/*": ["src/app/site/*"],             // Site content (Landing page, Media pages)
+      "@context/*": ["src/app/context/*"],       // React Context providers
+      "@hooks/*": ["src/app/hooks/*"],           // Custom React hooks
+      "@utils/*": ["src/app/utils/*"],           // Helper functions and API utilities
       "@styles/*": ["src/styles/*"]          // Global and custom styles
     }
   },

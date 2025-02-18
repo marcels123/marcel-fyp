@@ -1,6 +1,8 @@
 // // User profile page
 
-// import { useAuth } from '@hooks/useAuth';
+// import React from "react";
+// import "@/styles/globals.css";
+// import { useAuth } from "@hooks/useAuth";  // Authentication hook
 // // import { getUserProfile } from '@utils/api';
 
 // export default function ProfilePage() {
