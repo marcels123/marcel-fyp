@@ -1,28 +1,3 @@
-// // // Navigation bar
-
-// import Link from 'next/link';
-// import "@/styles/globals.css";
-
-// export default function Navbar() {
-//   return (
-//     <nav className="bg-[#202124] p-4 text-white flex justify-between items-center w-screen">
-//       <Link href="/" className="text-xl font-bold">
-//         AI & Digital Media
-//       </Link>
-//       <div className="flex flex-grow justify-evenly">
-//         <Link href="/" className="px-4">Home</Link>
-//         <Link href="/site/media/applications" className="px-4">Applications</Link>
-//         <Link href="/media/history" className="px-4">History</Link>
-//         <Link href="/site/learning" className="px-4">Learning</Link>
-//         <Link href="/pages/interactive" className="px-4">AI Demos</Link>
-//         <Link href="/pages/challenges" className="px-4">Challenges</Link>
-//         <Link href="/account/profile" className="px-4">My Account</Link>
-//         <Link href="/authentication/authsign" className="px-4">Sign In</Link>
-//       </div>
-//     </nav>
-//   );
-// }
-
 // Navigation bar
 
 import Link from 'next/link';
@@ -30,19 +5,29 @@ import "@/styles/globals.css";
 
 export default function Navbar() {
   return (
-    <nav className="bg-[#202124] p-4 text-white flex justify-between items-center w-screen">
-      <Link href="/" className="text-xl font-bold">
-        AI & Digital Media
-      </Link>
-      <div className="flex flex-grow justify-evenly">
-        <Link href="/" className="px-4">Home</Link>
-        <Link href="/media/applications" className="px-4">Applications</Link>
-        <Link href="/media/history" className="px-4">History</Link>
-        <Link href="/learning" className="px-4">Learning</Link>
-        <Link href="/interactive" className="px-4">AI Demos</Link>
-        <Link href="/challenges" className="px-4">Challenges</Link>
-        <Link href="/account/profile" className="px-4">My Account</Link>
-        <Link href="/authentication" className="px-4">Sign In</Link>
+    <nav className="bg-[#202124] p-4 text-white flex fixed w-screen">
+
+      {/* Title */}
+      <div className="flex 1 flex justify-center mr-auto">
+        <Link href="/" className="text-xl font-bold">AI & Digital Media</Link>
+      </div>
+
+      {/* Navbar links */}
+      <div className="flex flex-1 justify-center space-x-6 text-m mr-12">
+        <Link href="/" className="hover:bg-violet-700 rounded-md px-3 py-1">Home</Link>
+        <Link href="/webpages/about" className="hover:bg-violet-700 rounded-md px-2 py-1">About</Link>
+        <Link href="/webpages/applications" className="hover:bg-violet-700 rounded-md px-2 py-1">Applications</Link>
+        <Link href="/webpages/history" className="hover:bg-violet-700 rounded-md px-2 py-1">History</Link>
+        <Link href="/webpages/learning" className="hover:bg-violet-700 rounded-md px-2 py-1">Learning</Link>
+        <Link href="/webpages/interactive" className="hover:bg-violet-700 rounded-md px-2 py-1">AI Demos</Link>
+        <Link href="/webpages/challenges" className="hover:bg-violet-700 rounded-md px-2 py-1">Challenges</Link>
+        <Link href="/account/profile" className="hover:bg-violet-700 rounded-md px-2 py-1">My Account</Link>
+
+        {/* Sign in button */}
+      <div className="flex-2 flex ml-auto">
+        <Link href="/authentication" className="bg-violet-600 hover:bg-violet-700 px-2 py-2 rounded-md">Sign In</Link>
+      </div>
+
       </div>
     </nav>
   );

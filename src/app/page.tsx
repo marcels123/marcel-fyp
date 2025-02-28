@@ -1,4 +1,4 @@
-// Homepage
+// Website Homepage
 
 export default function Home() {
   return (
