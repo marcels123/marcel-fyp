@@ -13,22 +13,22 @@
     "isolatedModules": true,
     "jsx": "preserve",
     "incremental": true,
-    "baseUrl": ".",
+    "baseUrl": "./",
     "plugins": [
       {
         "name": "next"
       }
     ],
     "paths": {
-      "@/*": ["src/app/*"],                      // General root alias for everything inside /app
-      "@components/*": ["src/app/components/*"], // Reusable components (Navbar, Footer, etc.)
-      "@account/*": ["src/app/account/*"],       // Account pages (Profile, Settings)
-      "@auth/*": ["src/app/authentication/*"],   // Authentication pages (Sign-in, Sign-up)
-      "@site/*": ["src/app/site/*"],             // Site content (Landing page, Media pages)
-      "@context/*": ["src/app/context/*"],       // React Context providers
-      "@hooks/*": ["src/app/hooks/*"],           // Custom React hooks
-      "@utils/*": ["src/app/utils/*"],           // Helper functions and API utilities
-      "@styles/*": ["src/styles/*"]          // Global and custom styles
+      "@/*": ["src/app/*"],                     
+      "@components/*": ["src/app/components/*"],  
+      "@account/*": ["src/app/account/*"],        
+      "@auth/*": ["src/app/authentication/*"],    
+      "@site/*": ["src/app/site/*"],              
+      "@hooks/*": ["src/app/hooks/*"],            
+      "@utils/*": ["src/app/utils/*"],            
+      "@lib/*": ["src/app/lib/*"],           
+      "@styles/*": ["src/app/styles/*"]           
     }
   },
   "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx", ".next/types/**/*.ts"],
