@@ -25,7 +25,7 @@
       "@account/*": ["src/app/account/*"],        
       "@auth/*": ["src/app/authentication/*"],    
       "@site/*": ["src/app/site/*"],              
-      "@hooks/*": ["src/app/hooks/*"],            
+      "@hooks/*": ["src/app/api/*"],            
       "@utils/*": ["src/app/utils/*"],            
       "@lib/*": ["src/app/lib/*"],           
       "@styles/*": ["src/app/styles/*"]           

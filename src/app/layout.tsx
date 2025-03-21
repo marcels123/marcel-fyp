@@ -28,15 +28,19 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en" className="w-full h-full">
+    <html lang="en" className="w-full h-full bg-[#f4f3fc]">
       <body
-        className={`${geistSans.variable} ${geistMono.variable} antialiased w-full min-h-screen flex flex-col`}
+        className={`${geistSans.variable} ${geistMono.variable} antialiased w-full min-h-screen flex flex-col bg-[#f4f3fc] pt-16`}
       >
         {/* Navbar*/}
         <NavMenu />
 
         {/* Main content */}
-        <main className="flex-1 w-full">{children}</main>
+        <main className="flex-1 w-full">
+          <div className="container mx-auto py-8 bg-transparent">
+            {children}
+          </div>
+        </main>
 
         {/* Footer */}
         <FooterSection />

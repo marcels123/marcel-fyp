@@ -1,6 +1,6 @@
 export default function GamesAI() {
     return (
-        <div className="flex flex-col items-center w-full text-gray-800 bg-[#fcfdff]">
+        <div className="flex flex-col items-center w-full text-gray-800">
         {/* Hero Section */}
         <section className="w-full py-20 flex flex-col items-center">
           <h1 className="text-5xl font-bold mb-4 max-w-2xl text-center">
@@ -12,7 +12,7 @@ export default function GamesAI() {
         </section>
   
         {/* Aim Section */}
-        <section className="w-full py-16 bg-[#fcfdff]">
+        <section className="w-full py-16">
           <div className="max-w-5xl mx-auto px-6">
             <h2 className="text-3xl font-semibold mb-6">The Aim</h2>
             <p className="text-lg mb-4">
@@ -24,7 +24,7 @@ export default function GamesAI() {
         </section>
   
         {/* CTA Section */}
-        <section className="w-full py-16 bg-[#fcfdff]">
+        <section className="w-full py-16">
           <div className="max-w-5xl mx-auto px-6 text-center">
             <h2 className="text-3xl font-semibold mb-4">Ready to Learn More?</h2>
             <p className="text-lg mb-8">

@@ -1,10 +1,10 @@
 export default function FilmAI() {
     return (
-        <div className="flex flex-col items-center w-full text-gray-800 bg-[#fcfdff]">
+        <div className="flex flex-col items-center w-full text-gray-800">
         {/* Hero Section */}
         <section className="w-full py-20 flex flex-col items-center">
           <h1 className="text-5xl font-bold mb-4 max-w-2xl text-center">
-            About this project
+            The application and effects of AI in Film and its industry
           </h1>
           <p className="text-xl text-center max-w-xl">
             This project explores the effects and applications of AI in different forms of digital media.
@@ -12,7 +12,7 @@ export default function FilmAI() {
         </section>
   
         {/* Aim Section */}
-        <section className="w-full py-16 bg-[#fcfdff]">
+        <section className="w-full py-16">
           <div className="max-w-5xl mx-auto px-6">
             <h2 className="text-3xl font-semibold mb-6">The Aim</h2>
             <p className="text-lg mb-4">
@@ -24,7 +24,7 @@ export default function FilmAI() {
         </section>
   
         {/* CTA Section */}
-        <section className="w-full py-16 bg-[#fcfdff]">
+        <section className="w-full py-16">
           <div className="max-w-5xl mx-auto px-6 text-center">
             <h2 className="text-3xl font-semibold mb-4">Ready to Learn More?</h2>
             <p className="text-lg mb-8">

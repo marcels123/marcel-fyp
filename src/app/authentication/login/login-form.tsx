@@ -1,3 +1,8 @@
+'use client'
+
+import Link from "next/link";
+import React from "react"
+
 import { cn } from "@/lib/utils"
 import { Button } from "@/components/ui/button"
 import {
@@ -9,12 +14,20 @@ import {
 } from "@/components/ui/card"
 import { Input } from "@/components/ui/input"
 import { Label } from "@/components/ui/label"
-import Link from "next/link";
 
 export function LoginForm({
   className,
   ...props
 }: React.ComponentPropsWithoutRef<"div">) {
+  const [email, setEmail] = React.useState('')
+  const [password, setPassword] = React.useState('')
+
+  const onSubmit = (e: React.FormEvent) => {
+    e.preventDefault()
+
+    console.log('Logged In.')
+  }
+
   return (
     <div className={cn("flex flex-col gap-6", className)} {...props}>
       <Card>
@@ -25,11 +38,13 @@ export function LoginForm({
           </CardDescription>
         </CardHeader>
         <CardContent>
-          <form>
+          <form onSubmit={onSubmit}>
             <div className="flex flex-col gap-6">
               <div className="grid gap-2">
                 <Label htmlFor="email">Email</Label>
                 <Input
+                  value={email}
+                  onChange={(e) => setEmail(e.target.value)}
                   id="email"
                   type="email"
                   placeholder="m@example.com"
@@ -49,7 +64,13 @@ export function LoginForm({
                   </a> */}
 
                 </div>
-                <Input id="password" type="password" required />
+                <Input
+                  value={password}
+                  onChange={(e) => setPassword(e.target.value)}
+                  id="password"
+                  type="password"
+                  required
+                />
               </div>
               <Button type="submit" className="w-full">
                 Login
