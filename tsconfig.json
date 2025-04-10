@@ -20,15 +20,15 @@
       }
     ],
     "paths": {
-      "@/*": ["src/app/*"],                     
-      "@components/*": ["src/app/components/*"],  
-      "@account/*": ["src/app/account/*"],        
-      "@auth/*": ["src/app/authentication/*"],    
-      "@site/*": ["src/app/site/*"],              
-      "@hooks/*": ["src/app/api/*"],            
-      "@utils/*": ["src/app/utils/*"],            
-      "@lib/*": ["src/app/lib/*"],           
-      "@styles/*": ["src/app/styles/*"]           
+      "@/*": ["src/*"],
+      "@app/*": ["src/app/*"],
+      "@components/*": ["src/components/*"],
+      "@lib/*": ["src/lib/*"],
+      "@data/*": ["src/data/*"],
+      "@utils/*": ["src/utils/*"],
+      "@hooks/*": ["src/hooks/*"],
+      "@api/*": ["src/app/api/*"],
+      "@styles/*": ["src/app/styles/*"]
     }
   },
   "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx", ".next/types/**/*.ts"],

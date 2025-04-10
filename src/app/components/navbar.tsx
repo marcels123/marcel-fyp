@@ -56,7 +56,7 @@ export function NavMenu() {
                         href="/"
                       >
                         <div className="mb-2 mt-4 text-lg font-medium text-gray-900">
-                          AI Learning Hub
+                          DigiMed AI
                         </div>
                         <p className="text-sm leading-tight text-gray-600">
                           Explore the world of AI through interactive learning, demos, and real-world applications.
@@ -106,6 +106,14 @@ export function NavMenu() {
               <Link href="/webpages/about" legacyBehavior passHref>
                 <NavigationMenuLink className={cn(navigationMenuTriggerStyle(), "text-gray-600 hover:text-gray-900 bg-transparent hover:bg-transparent")}>
                   About Us
+                </NavigationMenuLink>
+              </Link>
+            </NavigationMenuItem>
+
+            <NavigationMenuItem>
+              <Link href="/webpages/ai-playground" legacyBehavior passHref>
+                <NavigationMenuLink className={cn(navigationMenuTriggerStyle(), "text-gray-600 hover:text-gray-900 bg-transparent hover:bg-transparent")}>
+                  AI Playground
                 </NavigationMenuLink>
               </Link>
             </NavigationMenuItem>
