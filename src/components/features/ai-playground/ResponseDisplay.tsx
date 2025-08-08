@@ -8,9 +8,8 @@ interface ResponseDisplayProps {
   isError?: boolean;
 }
 
-/**
- * Component to display AI response text
- */
+// Component to display AI response text
+
 export function ResponseDisplay({
   response,
   title = "Response:",

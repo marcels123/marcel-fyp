@@ -6,7 +6,7 @@
 export const config = {
   gemini: {
     apiKey: process.env.GOOGLE_GEMINI_API_KEY,
-    modelName: process.env.GEMINI_MODEL_NAME || 'gemini-pro',
+    modelName: process.env.GEMINI_MODEL_NAME || 'gemini-1.5-flash',
   },
   openai: {
     apiKey: process.env.OPENAI_API_KEY,

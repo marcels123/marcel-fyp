@@ -14,11 +14,13 @@ export async function getOpenAIResponse(prompt: string): Promise<string> {
     const safePrompt = String(prompt).trim();
     
     if (!safePrompt) {
-      throw new Error('Prompt cannot be empty');
+      throw new Error('Please enter a valid prompt');
     }
     
     if (!config.openai.apiKey) {
-      throw new Error('OpenAI API key is not configured');
+      // Log technical details for developers but throw user-friendly error
+      console.error('OpenAI API key is not configured. Please add OPENAI_API_KEY to your environment variables.');
+      throw new Error('This AI model is currently unavailable. Please try again later or contact support.');
     }
     
     // This is a placeholder - you would implement the actual OpenAI API call here

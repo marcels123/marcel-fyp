@@ -1,11 +1,9 @@
 import type { Metadata } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
-// import Navbar from "src/app/components/navbar";
-import { NavMenu } from "src/app/components/navbar";
-import FooterSection from "@/components/footer"
-import "src/app/styles/globals.css";
-
-
+import { NavMenu } from "@/components/layout/navbar";
+import FooterSection from "@/components/layout/footer";
+import "./globals.css";
+import { AuthProvider } from "@/lib/context/auth-context";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -24,26 +22,23 @@ export const metadata: Metadata = {
 
 export default function RootLayout({
   children,
-}: Readonly<{
+}: {
   children: React.ReactNode;
-}>) {
+}) {
   return (
-    <html lang="en" className="w-full h-full bg-[#f4f3fc]">
+    <html lang="en" suppressHydrationWarning>
       <body
-        className={`${geistSans.variable} ${geistMono.variable} antialiased w-full min-h-screen flex flex-col bg-[#f4f3fc] pt-16`}
+        className={`${geistSans.variable} ${geistMono.variable} antialiased min-h-screen bg-[#f4f3fc]`}
       >
-        {/* Navbar*/}
-        <NavMenu />
-
-        {/* Main content */}
-        <main className="flex-1 w-full">
-          <div className="container mx-auto py-8 bg-transparent">
-            {children}
+        <AuthProvider>
+          <div className="flex flex-col min-h-screen">
+            <NavMenu />
+            <main className="flex-1 container mx-auto p-8 pt-24">
+              {children}
+            </main>
+            <FooterSection />
           </div>
-        </main>
-
-        {/* Footer */}
-        <FooterSection />
+        </AuthProvider>
       </body>
     </html>
   );
