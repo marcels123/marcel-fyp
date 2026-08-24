@@ -1,176 +1,83 @@
-# DigiMed AI - Final Year Project
+# DigiMed AI
 
-A comprehensive web application exploring the intersection of artificial intelligence and digital media, built with Next.js, Firebase, and modern web technologies.
+A final year project exploring how artificial intelligence is transforming digital media — gaming, film, and music — built as a full-stack Next.js web app with live AI integration.
+
+Users can read curated breakdowns of AI's impact on each industry, test their knowledge with interactive quizzes, and try prompts against a real AI model (Google Gemini) directly in the browser.
 
 ## Features
 
-### AI Integration
-- **AI Playground**: Interactive interface for testing AI models
-- **Gemini Integration**: Google's Gemini AI for advanced text generation
-- **OpenAI Integration**: Access to OpenAI's language models
-- **AI Model Selection**: Choose between different AI providers
+- **Learning content** — dedicated pages covering AI's role in gaming, film, and music, each with real-world examples and sourced claims
+- **Interactive quizzes** — randomized answer ordering, retry-on-wrong-answer, and a completion screen per topic
+- **AI Playground** — send prompts to Gemini and see live responses, with usage history saved per account
+- **Authentication** — email/password sign-up and login via Firebase Authentication
+- **Persistence** — user profiles and AI interaction history stored in Firestore
 
-### Learning Modules
-- **Film & AI**: Explore AI applications in film production
-- **Music & AI**: Discover AI in music composition and production
-- **Gaming & AI**: Learn about AI in game development
-- **Interactive Quizzes**: Test knowledge with randomized questions
+## Tech stack
 
-### Authentication
-- **Firebase Authentication**: Secure user registration and login
-- **Protected Routes**: Access control for authenticated users
-- **User Management**: Profile management and session handling
+| Layer | Technology |
+|---|---|
+| Framework | [Next.js](https://nextjs.org) (App Router) + TypeScript |
+| UI | Tailwind CSS, [shadcn/ui](https://ui.shadcn.com) components, Radix UI primitives |
+| Auth & Database | [Firebase](https://firebase.google.com) (Authentication + Firestore) |
+| AI | [Google Gemini API](https://ai.google.dev) via the [Vercel AI SDK](https://sdk.vercel.ai) |
 
-### Modern UI/UX
-- **Responsive Design**: Works seamlessly on all devices
-- **Dark/Light Mode**: Theme switching capability
-- **Tailwind CSS**: Modern styling with utility classes
-- **Component Library**: Reusable UI components
+## Getting started
 
-## Tech Stack
+### Prerequisites
 
-### Frontend
-- **Next.js 15**: React framework with App Router
-- **TypeScript**: Type-safe development
-- **Tailwind CSS**: Utility-first CSS framework
-- **Radix UI**: Accessible component primitives
-- **Framer Motion**: Smooth animations
+- Node.js 18+
+- A [Firebase](https://console.firebase.google.com) project (Authentication + Firestore enabled)
+- A [Google Gemini API key](https://makersuite.google.com/app/apikey)
 
-### Backend & Services
-- **Firebase**: Authentication and database
-- **Google Gemini AI**: Advanced AI capabilities
-- **OpenAI API**: Language model integration
+### Setup
 
-### Development Tools
-- **ESLint**: Code linting and formatting
-- **PostCSS**: CSS processing
-- **Prisma**: Database ORM (if needed)
+```bash
+npm install
+```
 
-## Installation
+Create a `.env.local` file in the project root:
 
-1. **Clone the repository**
-   ```bash
-   git clone https://github.com/yourusername/marcel-fyp.git
-   cd marcel-fyp
-   ```
+```env
+GOOGLE_GEMINI_API_KEY=your_gemini_api_key_here
+```
 
-2. **Install dependencies**
-   ```bash
-   npm install
-   ```
+Then run the dev server:
 
-3. **Set up environment variables**
-   Create a `.env.local` file in the root directory:
-   ```env
-   # Firebase Configuration
-   NEXT_PUBLIC_FIREBASE_API_KEY=your_firebase_api_key
-   NEXT_PUBLIC_FIREBASE_AUTH_DOMAIN=your_firebase_auth_domain
-   NEXT_PUBLIC_FIREBASE_PROJECT_ID=your_firebase_project_id
-   NEXT_PUBLIC_FIREBASE_STORAGE_BUCKET=your_firebase_storage_bucket
-   NEXT_PUBLIC_FIREBASE_MESSAGING_SENDER_ID=your_firebase_messaging_sender_id
-   NEXT_PUBLIC_FIREBASE_APP_ID=your_firebase_app_id
+```bash
+npm run dev
+```
 
-   # AI API Keys
-   OPENAI_API_KEY=your_openai_api_key
-   GEMINI_API_KEY=your_gemini_api_key
-   ```
+Open [http://localhost:3000](http://localhost:3000) to view it.
 
-4. **Run the development server**
-   ```bash
-   npm run dev
-   ```
+See [SETUP.md](./SETUP.md) for full Firebase configuration details.
 
-5. **Open your browser**
-   Navigate to [http://localhost:3000](http://localhost:3000)
+### Available scripts
 
-## Project Structure
+- `npm run dev` — start the development server
+- `npm run build` — build for production
+- `npm run start` — start the production server
+- `npm run lint` — run ESLint
+
+## Project structure
 
 ```
 src/
-├── app/                    # Next.js App Router pages
-│   ├── api/               # API routes
-│   ├── authentication/    # Auth pages (login/register)
-│   ├── dashboard/         # Main application pages
-│   └── globals.css       # Global styles
-├── components/            # Reusable React components
-│   ├── auth/             # Authentication components
-│   ├── features/         # Feature-specific components
-│   ├── layout/           # Layout components
-│   └── ui/               # UI component library
-├── data/                 # Static data (quizzes, etc.)
-├── lib/                  # Utility functions and configurations
-└── types/                # TypeScript type definitions
+├── app/                  # Next.js App Router pages and API routes
+│   ├── api/ai/           # AI generation endpoint
+│   ├── authentication/   # Login / register pages
+│   └── dashboard/        # Learning content, quizzes, AI playground
+├── components/
+│   ├── auth/             # Login / register forms
+│   ├── features/         # Feature-specific components (AI playground, quizzes)
+│   ├── layout/            # Navbar, footer
+│   └── ui/                # Reusable shadcn/ui-based components
+├── lib/
+│   ├── ai/                # AI provider integration (Gemini)
+│   ├── context/           # Auth context/provider
+│   └── firebase/          # Firebase config and Firestore services
+└── data/quizzes/          # Quiz content
 ```
 
-## Key Components
+## About this project
 
-### Authentication System
-- **LoginForm**: User authentication with Firebase
-- **RegisterForm**: New user registration
-- **AuthWrapper**: Route protection for authenticated users
-- **AuthContext**: Global authentication state management
-
-### Quiz System
-- **QuizCarousel**: Interactive quiz with randomized answers
-- **Question Data**: Structured quiz content for different topics
-- **Progress Tracking**: User progress and completion tracking
-
-### AI Integration
-- **AIPlayground**: Interactive AI model testing
-- **ModelSelector**: Choose between different AI providers
-- **ResponseDisplay**: Show AI-generated responses
-
-## Available Scripts
-
-- `npm run dev` - Start development server
-- `npm run build` - Build for production
-- `npm run start` - Start production server
-- `npm run lint` - Run ESLint
-
-## Configuration
-
-### Firebase Setup
-1. Create a Firebase project at [Firebase Console](https://console.firebase.google.com/)
-2. Enable Authentication (Email/Password)
-3. Add your Firebase config to environment variables
-
-### AI API Setup
-1. Get API keys from [OpenAI](https://platform.openai.com/) and [Google AI Studio](https://makersuite.google.com/app/apikey)
-2. Add API keys to environment variables
-
-## Features in Detail
-
-### Interactive Quizzes
-- **Randomized Answers**: Questions shuffle answer positions
-- **Progress Tracking**: Track completion and scores
-- **Retry Functionality**: Restart quizzes without page reload
-- **Multiple Topics**: Film, Music, and Gaming AI quizzes
-
-### AI Playground
-- **Model Selection**: Choose between different AI providers
-- **Real-time Responses**: Get instant AI-generated content
-- **Error Handling**: Graceful error management
-- **Response History**: View previous interactions
-
-### User Authentication
-- **Secure Login**: Firebase-powered authentication
-- **Registration**: New user account creation
-- **Session Management**: Persistent login sessions
-- **Protected Content**: Access control for features
-
-## Design System
-
-The project uses a consistent design system with:
-- **Color Palette**: Purple primary (#635bff) with gray accents
-- **Typography**: Geist font family for modern readability
-- **Components**: Reusable UI components with consistent styling
-- **Responsive**: Mobile-first design approach
-
-## Security
-
-- **Firebase Security**: Industry-standard authentication
-- **Environment Variables**: Secure API key management
-- **Input Validation**: Client and server-side validation
-- **CORS Protection**: Cross-origin request handling
-
-**Note**: This is a Final Year Project exploring AI in Digital Media. For educational and research purposes.
+This was built as an individual final year project. It's no longer under active feature development, but the codebase is kept as a portfolio reference — feel free to look around.
