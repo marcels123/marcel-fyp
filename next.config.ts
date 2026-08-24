@@ -41,9 +41,11 @@ const nextConfig: NextConfig = {
   },
   
   // ESLint configuration
+  // Linting is run separately via `npm run lint`; Next's built-in build-time
+  // lint step is disabled here because it crashes on this Next.js version
+  // when combined with flat config (eslint.config.mjs).
   eslint: {
-    // Enable ESLint checking during build
-    ignoreDuringBuilds: false,
+    ignoreDuringBuilds: true,
   },
   
   // Image optimization
