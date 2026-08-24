@@ -25,13 +25,29 @@ interface QuizCarouselProps {
 }
 
 export function QuizCarousel({ questions, topic }: QuizCarouselProps) {
-  const [api, setApi] = useState<CarouselApi>();
+  // State management for quiz functionality
+  const [api, setApi] = useState<CarouselApi>(); 
   const [current, setCurrent] = useState(0);
-  const [answers, setAnswers] = useState<Record<number, string>>({});
-  const [showResults, setShowResults] = useState<Record<number, boolean>>({});
-  const [showFeedback, setShowFeedback] = useState(false);
+  const [answers, setAnswers] = useState<Record<number, string>>({}); 
+  const [showResults, setShowResults] = useState<Record<number, boolean>>({}); 
+  const [showFeedback, setShowFeedback] = useState(false); 
   const [isCorrect, setIsCorrect] = useState(false);
+  const [quizCompleted, setQuizCompleted] = useState(false);
 
+  // Shuffle answers for each question - use useState to prevent re-shuffling on re-renders
+  const [shuffledQuestions] = useState(() => 
+    questions.map(question => {
+      const shuffledOptions = [...question.options].sort(() => Math.random() - 0.5);
+      return {
+        ...question,
+        options: shuffledOptions,
+        // Keep track of the correct answer in the shuffled array
+        correctAnswer: question.correctAnswer
+      };
+    })
+  );
+
+  // Listen for carousel navigation changes
   useEffect(() => {
     if (!api) {
       return;
@@ -49,8 +65,9 @@ export function QuizCarousel({ questions, topic }: QuizCarouselProps) {
     }));
   };
 
+  // Check if the selected answer is correct
   const checkAnswer = (questionId: number) => {
-    const isAnswerCorrect = questions[questionId].correctAnswer === answers[questionId];
+    const isAnswerCorrect = shuffledQuestions[questionId].correctAnswer === answers[questionId];
     setIsCorrect(isAnswerCorrect);
     setShowFeedback(true);
     setShowResults(prev => ({
@@ -59,13 +76,18 @@ export function QuizCarousel({ questions, topic }: QuizCarouselProps) {
     }));
   };
 
+  // Navigate to next question or complete quiz
   const handleNext = () => {
     setShowFeedback(false);
-    if (current < questions.length - 1) {
+    if (current < shuffledQuestions.length - 1) {
       api?.scrollNext();
+    } else {
+      // Quiz completed
+      setQuizCompleted(true);
     }
   };
 
+  // Allow user to retry the current question
   const handleTryAgain = () => {
     setShowFeedback(false);
     setAnswers(prev => ({
@@ -78,26 +100,40 @@ export function QuizCarousel({ questions, topic }: QuizCarouselProps) {
     }));
   };
 
+  // Check if an option is currently selected
   const isAnswerSelected = (questionId: number, option: string) => {
     return answers[questionId] === option;
+  };
+
+  // Reset the entire quiz to start over
+  const resetQuiz = () => {
+    setAnswers({});
+    setShowResults({});
+    setShowFeedback(false);
+    setIsCorrect(false);
+    setQuizCompleted(false);
+    setCurrent(0);
+    api?.scrollTo(0);
   };
 
   return (
     <div className="w-full max-w-4xl mx-auto relative">
       <h2 className="text-2xl font-bold mb-6">{topic} Quiz</h2>
       
+      {/* Main quiz carousel */}
       <Carousel setApi={setApi} className="w-full">
         <CarouselContent>
-          {questions.map((question, index) => (
+          {shuffledQuestions.map((question, index) => (
             <CarouselItem key={question.id}>
               <Card className="p-6">
                 <CardHeader>
                   <CardTitle className="text-xl">
-                    Question {index + 1} of {questions.length}
+                    Question {index + 1} of {shuffledQuestions.length}
                   </CardTitle>
                 </CardHeader>
                 <CardContent>
                   <p className="text-lg mb-4">{question.question}</p>
+                  {/* Answer options */}
                   <div className="space-y-2">
                     {question.options.map((option) => (
                       <Button
@@ -115,6 +151,7 @@ export function QuizCarousel({ questions, topic }: QuizCarouselProps) {
                   </div>
                 </CardContent>
                 <CardFooter className="flex flex-col gap-4">
+
                   {!showResults[index] && (
                     <Button
                       onClick={() => checkAnswer(index)}
@@ -125,6 +162,7 @@ export function QuizCarousel({ questions, topic }: QuizCarouselProps) {
                       Check Answer
                     </Button>
                   )}
+
                   {showResults[index] && (
                     <div className={`w-full p-4 rounded-lg ${
                       isCorrect 
@@ -142,7 +180,10 @@ export function QuizCarousel({ questions, topic }: QuizCarouselProps) {
                             : 'bg-red-100 text-red-800 hover:bg-red-200'
                         }`}
                       >
-                        {isCorrect ? 'Next Question »' : 'Try Again'}
+                        {isCorrect 
+                          ? (current === shuffledQuestions.length - 1 ? 'Complete Quiz' : 'Next Question »')
+                          : 'Try Again'
+                        }
                       </Button>
                     </div>
                   )}
@@ -151,11 +192,32 @@ export function QuizCarousel({ questions, topic }: QuizCarouselProps) {
             </CarouselItem>
           ))}
         </CarouselContent>
+        {/* Carousel navigation buttons */}
         <div className="flex justify-center gap-2 mt-4">
           <CarouselPrevious />
           <CarouselNext />
         </div>
       </Carousel>
+      
+      {/* Quiz completion screen */}
+      {quizCompleted && (
+        <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50">
+          <div className="bg-white rounded-lg p-8 max-w-md mx-4 text-center">
+            <h3 className="text-2xl font-bold mb-4">Quiz Completed!</h3>
+            <p className="text-gray-600 mb-6">
+              Great job! You've completed the {topic} quiz.
+            </p>
+            <div className="flex justify-center">
+              <Button
+                onClick={resetQuiz}
+                className="bg-[#635bff] hover:bg-[#635bff]/90 text-white"
+              >
+                Try Again
+              </Button>
+            </div>
+          </div>
+        </div>
+      )}
     </div>
   );
 } 

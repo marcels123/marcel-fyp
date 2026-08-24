@@ -76,6 +76,7 @@ export function LoginForm() {
       </div>
       
       <form onSubmit={handleSubmit} className="space-y-6">
+        {/* Display error message if authentication fails */}
         {error && (
           <div className="p-3 text-sm text-red-500 bg-red-50 border border-red-200 rounded">
             {error}
